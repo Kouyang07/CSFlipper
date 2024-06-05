@@ -30,6 +30,9 @@ public class Scraper {
         HistoricalData historicalData = scrapeHistoricalData();
         return new EmbedBuilder()
                 .setTitle("Skin data for " + item.replace("-", " ") + " | ~ $" + (int)(platforms[1].getPrice() - platforms[0].getPrice()))
+                .addField("Recommended action",
+                        "Buy from " + platforms[0].getName() + "@" + platforms[0].getPrice() + " , sell to " + platforms[1].getName() + "@" + platforms[1].getPrice(), false)
+
                 .addField("Historical Data", "Current Price: $" + historicalData.getCurrentPrice() + "\n" +
                         "24h Price Change: $" + historicalData.getPriceChange() + "\n" +
                         "24h Trading Volume: $" + historicalData.getTradingVolume() + "\n" +
@@ -112,7 +115,7 @@ public class Scraper {
                 minPrice = platforms[i].getPrice();
                 lIndex = i;
             }
-            if (Objects.nonNull(platforms[i]) && platforms[i].getPrice() > maxPrice && (platforms[i].getName().equals("Skinport") || platforms[i].getName().equals("Dmarket"))) {
+            if (Objects.nonNull(platforms[i]) && platforms[i].getPrice() > maxPrice && (platforms[i].getName().equals("Skinport") || platforms[i].getName().equals("Dmarket") || platforms[i].getName().equals("GamerPay"))) {
                 maxPrice = platforms[i].getPrice();
                 hIndex = i;
             }
@@ -122,13 +125,14 @@ public class Scraper {
 
     public HistoricalData scrapeHistoricalData() {
         List<Double> values = new ArrayList<>();
-        int[] xPathValues = {1, 2, 3, 4, 5, 8, 9, 12, 13};
-        for (int value : xPathValues) {
-            Elements elements = doc.selectXpath("/html/body/main/div[2]/div[1]/div[11]/div[2]/div[" + value + "]");
-            String[] tokens = elements.first().text().split(" ");
-            if (tokens[2].contains("Change")) {
-                values.add(Double.parseDouble(tokens[tokens.length - 2].substring(1).replaceAll(",", "")));
-            } else {
+
+        Element element = doc.select("div[class=\"shadow-md bg-gray-800 rounded mt-4\"]").getLast();
+        Elements fields = element.select("div[class=\"flex px-4 py-2\"]");
+        for(Element field : fields){
+            String[] tokens = field.text().split(" ");
+            if(tokens[2].contains("Change")){
+                values.add(Double.parseDouble(tokens[tokens.length - 2].substring(2).replaceAll(",", "")));
+            }else{
                 values.add(Double.parseDouble(tokens[tokens.length - 1].substring(1).replaceAll(",", "")));
             }
         }
