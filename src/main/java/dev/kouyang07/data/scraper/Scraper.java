@@ -38,8 +38,23 @@ public class Scraper {
     public MessageEmbed flipData() {
         Platforms[] platforms = filterPlatforms();
         PriceStatistics priceStatistics = scrapePriceStatistics();
+        if (platforms[0] == null || platforms[1] == null || (platforms[0] == platforms[1])) {
+            return new EmbedBuilder()
+                    .setTitle("Skin data for " + item.replace("-", " ") + " : NOT RECOMMENDED")
+                    .addField("Historical Data", "Current Price: $" + priceStatistics.getCurrentPrice() + "\n" +
+                            "24h Price Change: $" + priceStatistics.getPriceChange() + "\n" +
+                            "24h Trading Volume: $" + priceStatistics.getTradingVolume() + "\n" +
+                            "Market Cap: $" + priceStatistics.getMarketCap() + "\n" +
+                            "Volume / Market Cap: $" + priceStatistics.getVolumeMarketCap() + "\n" +
+                            "30d High: $" + priceStatistics.getHigh() + "\n" +
+                            "30d Low: $" + priceStatistics.getLow() + "\n" +
+                            "30d Average $" + (priceStatistics.getHigh() + priceStatistics.getLow()) / 2 + "\n" +
+                            "All Time High: $" + priceStatistics.getAllTimeHigh() + "\n" +
+                            "All Time Low: $" + priceStatistics.getAllTimeLow(), false)
+                     .build();
+        }
         return new EmbedBuilder()
-                .setTitle("Skin data for " + item.replace("-", " ") + " | ~ $" + (int) (platforms[1].getPrice() - platforms[0].getPrice()))
+                .setTitle("Skin data for " + item.replace("-", " ") + " : ~ $" + (int) (platforms[1].getPrice() - platforms[0].getPrice()))
                 .addField("Recommended action",
                         "Buy from " + platforms[0].getName() + "@" + platforms[0].getPrice() + " , sell to " + platforms[1].getName() + "@" + platforms[1].getPrice() + " (Fees included)", false)
 
@@ -59,12 +74,12 @@ public class Scraper {
                 .build();
     }
 
-    public byte[] historicalData() {
+    public byte[] generateChart() {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         SimpleDateFormat inputDateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy"); // The format of your date strings
         SimpleDateFormat outputDateFormat = new SimpleDateFormat("MM/dd"); // Desired format for the chart
         Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DAY_OF_YEAR, -30); // Get date 30 days ago
+        calendar.add(Calendar.DAY_OF_YEAR, -14); // Get date 30 days ago
         Date thirtyDaysAgo = calendar.getTime();
 
         Product product = scrapeHistoricalData();
@@ -87,7 +102,7 @@ public class Scraper {
         }
 
         JFreeChart lineChart = ChartFactory.createLineChart(
-                "Price History for " + product.getName().replace("-", " "),
+                "Price History for " + product.getName(),
                 "Date",
                 "Price",
                 dataset,
@@ -99,7 +114,7 @@ public class Scraper {
         lineChart.getPlot().setBackgroundPaint(new Color(31, 41, 55));
 
         try {
-            return ChartUtils.encodeAsPNG(lineChart.createBufferedImage(1400, 600));
+            return ChartUtils.encodeAsPNG(lineChart.createBufferedImage(2000, 600));
         } catch (Exception e) {
             System.err.println("Error while encoding as PNG");
             e.printStackTrace(); // Print stack trace to identify the issue
@@ -170,6 +185,9 @@ public class Scraper {
         int hIndex = 0;
         double maxPrice = Double.MIN_VALUE;
         for (int i = 0; i < platforms.length; i++) {
+            if(Objects.isNull(platforms[i])){
+                continue;
+            }
             if (Objects.nonNull(platforms[i]) && platforms[i].getPrice() < minPrice) {
                 minPrice = platforms[i].getPrice();
                 lIndex = i;
@@ -182,10 +200,13 @@ public class Scraper {
 
         Platforms[] prices = new Platforms[]{platforms[lIndex], platforms[hIndex]};
 
-        if(prices[1].getName().equals("Skinport")){
-            prices[1].setPrice(prices[1].getPrice() - (prices[1].getPrice() * 0.12));
-        }else if(prices[1].getName().equals("Dmarket")){
-            prices[1].setPrice(prices[1].getPrice() - (prices[1].getPrice() * 0.05));
+        if(prices[1] != null) {
+
+            if (prices[1].getName().equals("Skinport")) {
+                prices[1].setPrice(prices[1].getPrice() - (prices[1].getPrice() * 0.12));
+            } else if (prices[1].getName().equals("Dmarket")) {
+                prices[1].setPrice(prices[1].getPrice() - (prices[1].getPrice() * 0.05));
+            }
         }
         return prices;
     }

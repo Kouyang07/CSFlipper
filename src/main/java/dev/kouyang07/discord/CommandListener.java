@@ -20,7 +20,7 @@ public class CommandListener extends ListenerAdapter {
             Scraper scraper = new Scraper(name);
             event.deferReply().queue();
             event.getHook().sendMessageEmbeds(scraper.flipData()).queue();
-            event.getHook().sendFiles(FileUpload.fromData(scraper.historicalData(), "PriceHistoryChart.jpeg")).queue();
+            event.getHook().sendFiles(FileUpload.fromData(scraper.generateChart(), "PriceHistoryChart.jpeg")).queue();
         }else if(event.getName().equals("debug")){
             event.replyEmbeds(
                     new EmbedBuilder()
