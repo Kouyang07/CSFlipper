@@ -1,4 +1,13 @@
 /Users/kouyang/IdeaProjects/CSFlipper/src/main/java/dev/kouyang07/Main.java
+/Users/kouyang/IdeaProjects/CSFlipper/src/main/java/dev/kouyang07/data/items/Skin.java
+/Users/kouyang/IdeaProjects/CSFlipper/src/main/java/dev/kouyang07/data/items/structure/Category.java
+/Users/kouyang/IdeaProjects/CSFlipper/src/main/java/dev/kouyang07/data/items/structure/Collection.java
+/Users/kouyang/IdeaProjects/CSFlipper/src/main/java/dev/kouyang07/data/items/structure/Crate.java
+/Users/kouyang/IdeaProjects/CSFlipper/src/main/java/dev/kouyang07/data/items/structure/Pattern.java
+/Users/kouyang/IdeaProjects/CSFlipper/src/main/java/dev/kouyang07/data/items/structure/Rarity.java
+/Users/kouyang/IdeaProjects/CSFlipper/src/main/java/dev/kouyang07/data/items/structure/Team.java
+/Users/kouyang/IdeaProjects/CSFlipper/src/main/java/dev/kouyang07/data/items/structure/Weapon.java
+/Users/kouyang/IdeaProjects/CSFlipper/src/main/java/dev/kouyang07/data/items/structure/Wear.java
 /Users/kouyang/IdeaProjects/CSFlipper/src/main/java/dev/kouyang07/data/scraper/Platforms.java
 /Users/kouyang/IdeaProjects/CSFlipper/src/main/java/dev/kouyang07/data/scraper/PriceHistory.java
 /Users/kouyang/IdeaProjects/CSFlipper/src/main/java/dev/kouyang07/data/scraper/PriceStatistics.java

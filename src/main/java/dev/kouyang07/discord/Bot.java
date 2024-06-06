@@ -16,16 +16,15 @@ public class Bot {
 
     public Bot() {
         jda = JDABuilder.createDefault("MTI0NjI4NDU2MTM5NTA5MzU2NQ.GU2NPN.DAKeHg05w060wmlvY1SLyfwpnzf3MxkPWP5avI")
-                .setActivity(Activity.watching("CS:GO Skins"))
+                .setActivity(Activity.watching("CS:GO Skins :)"))
                 .addEventListeners(new CommandListener())
                 .build();
 
         List<CommandData> commandData = new ArrayList<>();
-        OptionData skin = new OptionData(OptionType.STRING, "skin", "The skin you want to search for", true);
+        OptionData skin = new OptionData(OptionType.STRING, "name", "The skin you want to search for", true);
         commandData.add(Commands.slash("skin","Search for data regarding the specific skin").addOptions(skin));
-
+        //commandData.add(Commands.slash("debug", "Show information for debugging"));
         jda.updateCommands().addCommands(commandData).queue();
-
 
     }
 

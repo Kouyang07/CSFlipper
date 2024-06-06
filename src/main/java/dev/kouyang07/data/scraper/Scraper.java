@@ -179,12 +179,15 @@ public class Scraper {
                 hIndex = i;
             }
         }
-        if(platforms[1].getName().equals("Skinport")){
-            platforms[1].setPrice(platforms[1].getPrice() - (platforms[1].getPrice() * 0.12));
-        }else if(platforms[1].getName().equals("Dmarket")){
-            platforms[1].setPrice(platforms[1].getPrice() - (platforms[1].getPrice() * 0.05));
+
+        Platforms[] prices = new Platforms[]{platforms[lIndex], platforms[hIndex]};
+
+        if(prices[1].getName().equals("Skinport")){
+            prices[1].setPrice(prices[1].getPrice() - (prices[1].getPrice() * 0.12));
+        }else if(prices[1].getName().equals("Dmarket")){
+            prices[1].setPrice(prices[1].getPrice() - (prices[1].getPrice() * 0.05));
         }
-        return new Platforms[]{platforms[lIndex], platforms[hIndex]};
+        return prices;
     }
 
     public PriceStatistics scrapePriceStatistics() {

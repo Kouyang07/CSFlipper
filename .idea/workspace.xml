@@ -8,8 +8,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eaf60fac-a892-4324-b733-add2f33ad199" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/Skin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/structure/Category.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/structure/Collection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/structure/Crate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/structure/Pattern.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/structure/Rarity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/structure/Team.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/structure/Weapon.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/structure/Wear.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/scraper/Scraper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/scraper/Scraper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/discord/Bot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/discord/Bot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/discord/CommandListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/discord/CommandListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/CSFlipper-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/CSFlipper-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dev/kouyang07/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dev/kouyang07/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dev/kouyang07/discord/Bot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dev/kouyang07/discord/Bot.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dev/kouyang07/discord/CommandListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dev/kouyang07/discord/CommandListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/original-CSFlipper-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/original-CSFlipper-1.0-SNAPSHOT.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +74,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="dev.kouyang07.data.items" />
+    </key>
+  </component>
   <component name="RunManager" selected="Shell Script.Deploy Jar">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dev.kouyang07.Main" />
@@ -139,7 +161,7 @@
       <workItem from="1717253241014" duration="1276000" />
       <workItem from="1717519525987" duration="6172000" />
       <workItem from="1717611143221" duration="706000" />
-      <workItem from="1717675815976" duration="5113000" />
+      <workItem from="1717675815976" duration="9641000" />
     </task>
     <servers />
   </component>
