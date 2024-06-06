@@ -16,7 +16,8 @@ public class CommandListener extends ListenerAdapter {
     @Override
     public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event) {
         if(event.getName().equals("skin")){
-            Scraper scraper = new Scraper(Objects.requireNonNull(event.getOption("name")).getAsString());
+            String name = Objects.requireNonNull(event.getOption("name")).getAsString();
+            Scraper scraper = new Scraper(name);
             event.deferReply().queue();
             event.getHook().sendMessageEmbeds(scraper.flipData()).queue();
             event.getHook().sendFiles(FileUpload.fromData(scraper.historicalData(), "PriceHistoryChart.jpeg")).queue();
@@ -28,17 +29,15 @@ public class CommandListener extends ListenerAdapter {
             ).queue();
         }
     }
-
     @Override
     public void onCommandAutoCompleteInteraction(CommandAutoCompleteInteractionEvent event) {
         if (event.getName().equals("skin") && event.getFocusedOption().getName().equals("name")) {
             String input = event.getFocusedOption().getValue();
             var options = Skin.allSkins.keySet().stream()
-                    .filter(name -> name.toLowerCase().startsWith(input.toLowerCase()))
+                    .filter(name -> name.toLowerCase().contains(input.toLowerCase()))
                     .limit(25)
                     .map(name -> new net.dv8tion.jda.api.interactions.commands.Command.Choice(name, name))
                     .collect(Collectors.toList());
-
             event.replyChoices(options).queue();
         }
     }

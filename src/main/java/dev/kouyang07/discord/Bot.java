@@ -21,9 +21,9 @@ public class Bot {
                 .build();
 
         List<CommandData> commandData = new ArrayList<>();
-        OptionData skin = new OptionData(OptionType.STRING, "name", "The skin you want to search for", true);
+        OptionData skin = new OptionData(OptionType.STRING, "name", "The skin you want to search for", true).setAutoComplete(true);
         commandData.add(Commands.slash("skin","Search for data regarding the specific skin").addOptions(skin));
-        //commandData.add(Commands.slash("debug", "Show information for debugging"));
+        commandData.add(Commands.slash("debug", "Show information for debugging"));
         jda.updateCommands().addCommands(commandData).queue();
 
     }

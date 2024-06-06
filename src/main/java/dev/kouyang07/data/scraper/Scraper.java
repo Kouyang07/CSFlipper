@@ -109,7 +109,7 @@ public class Scraper {
     }
 
     public String URLConstructor(String item) {
-        return "https://csgoskins.gg/items/" + item.replace(" ", "-");
+        return "https://csgoskins.gg/items/" + item.replace("★", "").replaceAll("\\|", "").replaceAll(" {2}", " ").trim().replaceAll(" ", "-").toLowerCase();
     }
 
     private Platforms[] scrapePlatforms() {
