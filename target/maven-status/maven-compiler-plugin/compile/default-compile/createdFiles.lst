@@ -1,6 +1,9 @@
+dev/kouyang07/data/scraper/PriceHistory.class
+dev/kouyang07/data/scraper/Scraper.class
+dev/kouyang07/data/scraper/PriceStatistics.class
+dev/kouyang07/data/scraper/Scraper$1.class
+dev/kouyang07/data/scraper/Platforms.class
+dev/kouyang07/Main.class
 dev/kouyang07/discord/Bot.class
 dev/kouyang07/discord/CommandListener.class
-dev/kouyang07/scraper/Scraper.class
-dev/kouyang07/scraper/Platforms.class
-dev/kouyang07/Main.class
-dev/kouyang07/scraper/HistoricalData.class
+dev/kouyang07/data/scraper/Product.class
