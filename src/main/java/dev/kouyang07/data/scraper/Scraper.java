@@ -24,14 +24,57 @@ import java.util.List;
 
 public class Scraper {
     private final String item;
-    private final Document doc;
+    private final Wear wear;
+    private final boolean statTrack;
+    private Document doc;
+    private boolean isValid;
+
+    public Scraper(String item, Wear wear, boolean statTrack) {
+        this.item = item;
+        this.wear = wear;
+        this.statTrack = statTrack;
+        try {
+            doc = Jsoup.connect(URLConstructor(item, wear, statTrack)).get();
+        } catch (Exception e) {
+            isValid = false;
+            doc = null;
+        }
+    }
+
+
+    public Scraper(String item, Wear wear) {
+        this.item = item;
+        this.wear = wear;
+        this.statTrack = false;
+        try {
+            doc = Jsoup.connect(URLConstructor(item, wear)).get();
+        } catch (Exception e) {
+            isValid = false;
+            doc = null;
+        }
+    }
 
     public Scraper(String item) {
         this.item = item;
+        this.wear = null;
+        this.statTrack = false;
         try {
             doc = Jsoup.connect(URLConstructor(item)).get();
         } catch (Exception e) {
-            throw new RuntimeException("Error: " + e.getMessage());
+            isValid = false;
+            doc = null;
+        }
+    }
+
+    public Scraper(String item, boolean statTrack) {
+        this.item = item;
+        this.wear = null;
+        this.statTrack = statTrack;
+        try {
+            doc = Jsoup.connect(URLConstructor(item, statTrack)).get();
+        } catch (Exception e) {
+            isValid = false;
+            doc = null;
         }
     }
 
@@ -41,6 +84,7 @@ public class Scraper {
         if (platforms[0] == null || platforms[1] == null || (platforms[0] == platforms[1])) {
             return new EmbedBuilder()
                     .setTitle("Skin data for " + item.replace("-", " ") + " : NOT RECOMMENDED")
+                    .addField("Attributes", (wear != null ? " (" + wear.getName() + ")" : "") + "\n"+ (statTrack ? " (StatTrak)" : ""), false)
                     .addField("Historical Data", "Current Price: $" + priceStatistics.getCurrentPrice() + "\n" +
                             "24h Price Change: $" + priceStatistics.getPriceChange() + "\n" +
                             "24h Trading Volume: $" + priceStatistics.getTradingVolume() + "\n" +
@@ -55,6 +99,7 @@ public class Scraper {
         }
         return new EmbedBuilder()
                 .setTitle("Skin data for " + item.replace("-", " ") + " : ~ $" + (int) (platforms[1].getPrice() - platforms[0].getPrice()))
+                .addField("Attributes", ("Wear: " + (wear != null ? " (" + wear.getName() + ")" : "Factory New")  + "\nStatTrak: " + (statTrack ? " (True)" : "(False)")), false)
                 .addField("Recommended action",
                         "Buy from " + platforms[0].getName() + "@" + platforms[0].getPrice() + " , sell to " + platforms[1].getName() + "@" + platforms[1].getPrice() + " (Fees included)", false)
 
@@ -125,6 +170,23 @@ public class Scraper {
 
     public String URLConstructor(String item) {
         return "https://csgoskins.gg/items/" + item.replace("★", "").replaceAll("\\|", "").replaceAll(" {2}", " ").trim().replaceAll(" ", "-").toLowerCase();
+    }
+
+    public String URLConstructor(String item, Wear wear, boolean statTrack) {
+        String base = "https://csgoskins.gg/items/" + item.replace("★", "").replaceAll("\\|", "").replaceAll(" {2}", " ").trim().replaceAll(" ", "-").toLowerCase();
+        if (statTrack) {
+            return base + "/stattrak-" + wear.getName().toLowerCase();
+        } else {
+            return base + "/" + wear.getName().toLowerCase();
+        }
+    }
+
+    public String URLConstructor(String item, boolean statTrack) {
+        return "https://csgoskins.gg/items/" + item.replace("★", "").replaceAll("\\|", "").replaceAll(" {2}", " ").trim().replaceAll(" ", "-").toLowerCase() + "/stattrak-factory-new";
+    }
+
+    public String URLConstructor(String item, Wear wear) {
+        return "https://csgoskins.gg/items/" + item.replace("★", "").replaceAll("\\|", "").replaceAll(" {2}", " ").trim().replaceAll(" ", "-").toLowerCase() + "/" + wear.getName().toLowerCase();
     }
 
     private Platforms[] scrapePlatforms() {
@@ -259,5 +321,9 @@ public class Scraper {
             System.out.println("Error while parsing historical Data");
         }
         return product;
+    }
+
+    public boolean isValid() {
+        return doc != null;
     }
 }

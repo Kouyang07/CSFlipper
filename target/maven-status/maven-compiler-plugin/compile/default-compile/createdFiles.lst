@@ -8,6 +8,7 @@ dev/kouyang07/data/scraper/Product.class
 dev/kouyang07/data/items/structure/Wear.class
 dev/kouyang07/data/scraper/PriceHistory.class
 dev/kouyang07/data/scraper/Scraper.class
+dev/kouyang07/data/scraper/Wear.class
 dev/kouyang07/data/items/structure/Crate.class
 dev/kouyang07/data/scraper/Scraper$1.class
 dev/kouyang07/data/scraper/Platforms.class

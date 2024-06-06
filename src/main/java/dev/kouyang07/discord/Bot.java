@@ -22,7 +22,9 @@ public class Bot {
 
         List<CommandData> commandData = new ArrayList<>();
         OptionData skin = new OptionData(OptionType.STRING, "name", "The skin you want to search for", true).setAutoComplete(true);
-        commandData.add(Commands.slash("skin","Search for data regarding the specific skin").addOptions(skin));
+        OptionData wear = new OptionData(OptionType.STRING, "wear", "The wear of the skin you want to search for", false).setAutoComplete(true);
+        OptionData stattrak = new OptionData(OptionType.BOOLEAN, "stattrak", "Whether the skin is StatTrak or not", false);
+        commandData.add(Commands.slash("skin","Search for data regarding the specific skin").addOptions(skin).addOptions(wear).addOptions(stattrak));
         commandData.add(Commands.slash("debug", "Show information for debugging"));
         jda.updateCommands().addCommands(commandData).queue();
 
