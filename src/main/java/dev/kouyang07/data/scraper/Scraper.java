@@ -159,7 +159,7 @@ public class Scraper {
         lineChart.getPlot().setBackgroundPaint(new Color(31, 41, 55));
 
         try {
-            return ChartUtils.encodeAsPNG(lineChart.createBufferedImage(2000, 600));
+            return ChartUtils.encodeAsPNG(lineChart.createBufferedImage(1500, 800));
         } catch (Exception e) {
             System.err.println("Error while encoding as PNG");
             e.printStackTrace(); // Print stack trace to identify the issue
