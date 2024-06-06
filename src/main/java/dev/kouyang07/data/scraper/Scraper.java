@@ -41,7 +41,7 @@ public class Scraper {
         return new EmbedBuilder()
                 .setTitle("Skin data for " + item.replace("-", " ") + " | ~ $" + (int) (platforms[1].getPrice() - platforms[0].getPrice()))
                 .addField("Recommended action",
-                        "Buy from " + platforms[0].getName() + "@" + platforms[0].getPrice() + " , sell to " + platforms[1].getName() + "@" + platforms[1].getPrice(), false)
+                        "Buy from " + platforms[0].getName() + "@" + platforms[0].getPrice() + " , sell to " + platforms[1].getName() + "@" + platforms[1].getPrice() + " (Fees included)", false)
 
                 .addField("Historical Data", "Current Price: $" + priceStatistics.getCurrentPrice() + "\n" +
                         "24h Price Change: $" + priceStatistics.getPriceChange() + "\n" +
@@ -178,6 +178,11 @@ public class Scraper {
                 maxPrice = platforms[i].getPrice();
                 hIndex = i;
             }
+        }
+        if(platforms[1].getName().equals("Skinport")){
+            platforms[1].setPrice(platforms[1].getPrice() - (platforms[1].getPrice() * 0.12));
+        }else if(platforms[1].getName().equals("Dmarket")){
+            platforms[1].setPrice(platforms[1].getPrice() - (platforms[1].getPrice() * 0.05));
         }
         return new Platforms[]{platforms[lIndex], platforms[hIndex]};
     }

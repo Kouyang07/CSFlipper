@@ -8,21 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eaf60fac-a892-4324-b733-add2f33ad199" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/scraper/PriceHistory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/scraper/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/discord/CommandListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/discord/CommandListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/scraper/HistoricalData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/scraper/PriceStatistics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/scraper/Platforms.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/scraper/Platforms.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/scraper/Scraper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/scraper/Scraper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/CSFlipper-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/CSFlipper-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dev/kouyang07/discord/CommandListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dev/kouyang07/discord/CommandListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dev/kouyang07/scraper/HistoricalData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dev/kouyang07/scraper/Platforms.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dev/kouyang07/scraper/Scraper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/original-CSFlipper-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/original-CSFlipper-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/scraper/Scraper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/scraper/Scraper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +139,7 @@
       <workItem from="1717253241014" duration="1276000" />
       <workItem from="1717519525987" duration="6172000" />
       <workItem from="1717611143221" duration="706000" />
-      <workItem from="1717675815976" duration="4140000" />
+      <workItem from="1717675815976" duration="5113000" />
     </task>
     <servers />
   </component>
