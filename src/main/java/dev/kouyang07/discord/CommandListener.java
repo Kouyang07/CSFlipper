@@ -47,8 +47,9 @@ public class CommandListener extends ListenerAdapter {
             boolean scraperStatTrak = scraper.getStatTrak();
             Platforms[] scraperPlatforms = scraper.filterPlatforms();
             PriceStatistics scraperPriceStatistics = scraper.scrapePriceStatistics();
+            String scraperImage = scraper.scrapeImage();
 
-            event.replyEmbeds(generateEmbed(scraperItem, scraperWear, scraperStatTrak, scraperPlatforms, scraperPriceStatistics))
+            event.replyEmbeds(generateEmbed(scraperItem, scraperWear, scraperStatTrak, scraperPlatforms, scraperPriceStatistics, scraperImage))
                     .addActionRow(Button.link(scraperPlatforms[0].getUrl(), "Buy"), Button.link(scraperPlatforms[1].getUrl(), "Sell")).queue();
             event.getHook().sendFiles(FileUpload.fromData(scraper.generateChart(), "chart.png")).queue();
         }else if(event.getName().equals("debug")){
@@ -80,7 +81,7 @@ public class CommandListener extends ListenerAdapter {
         }
     }
 
-    public MessageEmbed generateEmbed(String item, Wear wear, boolean statTrack, Platforms[] platforms, PriceStatistics priceStatistics) {
+    public MessageEmbed generateEmbed(String item, Wear wear, boolean statTrack, Platforms[] platforms, PriceStatistics priceStatistics, String imageURL) {
         if (platforms[0] == null || platforms[1] == null || (platforms[0] == platforms[1])) {
             return new EmbedBuilder()
                     .setTitle(item.replace("-", " ") + " : __NOT RECOMMENDED__")
@@ -99,9 +100,10 @@ public class CommandListener extends ListenerAdapter {
         }
         return new EmbedBuilder()
                 .setTitle(item.replace("-", " ") + " : ~ $" + (int) (platforms[1].getPrice() - platforms[0].getPrice()))
-                .addField("Attributes", ("Wear: " + (wear != null ? " (" + wear.getName() + ")" : "Factory New")  + "\nStatTrak: " + (statTrack ? " (True)" : "(False)")), false)
+                .addField("Attributes", ("Wear: `" + (wear != null ? " (" + wear.getName() + ")" : "Factory New")  + "`\nStatTrak: `" + (statTrack ? " (True)`" : "(False)`")), false)
+                .setImage(imageURL)
                 .addField("Recommended action",
-                        "\uD83D\uDED2 Buy: `" + platforms[0].getName() + "@" + platforms[0].getPrice() + "`\n\uD83D\uDCB0 Sell: `" + platforms[1].getName() + "@" + platforms[1].getPrice() + " (Fees included)`", false)
+                        "\uD83D\uDED2 Buy: `" + platforms[0].getName() + "@" + platforms[0].getPrice() + "`\n\uD83D\uDCB0 Sell: `" + platforms[1].getName() + "@" + platforms[1].getPrice() + "` (Fees included)", false)
 
                 .addField("Historical Data", "Current Price: `$" + priceStatistics.getCurrentPrice() + "`"+ "\n" +
                         "24h Price Change: `$" + priceStatistics.getPriceChange() + "`\n" +

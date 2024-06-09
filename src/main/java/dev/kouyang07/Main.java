@@ -14,6 +14,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         //Once every 1.5 seconds
+        //7D6F3054D7A16B6ADEF49492C39443E8 steam api key
         ObjectMapper mapper = new ObjectMapper();
         try {
             // Read JSON file and parse into Skin object

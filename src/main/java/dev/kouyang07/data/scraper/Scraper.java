@@ -276,6 +276,15 @@ public class Scraper {
         return product;
     }
 
+    public String scrapeImage(){
+        Element img = doc.select("img#main-image").first();
+        if (img != null) {
+            return img.attr("src");
+        } else {
+            return "";
+        }
+    }
+
     public boolean isValid() {
         return doc != null;
     }
