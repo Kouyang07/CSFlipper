@@ -2,6 +2,7 @@ package dev.kouyang07;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.kouyang07.data.items.Skin;
+import dev.kouyang07.data.scraper.Scraper;
 import dev.kouyang07.discord.Bot;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -12,6 +13,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+        //Once every 1.5 seconds
         ObjectMapper mapper = new ObjectMapper();
         try {
             // Read JSON file and parse into Skin object

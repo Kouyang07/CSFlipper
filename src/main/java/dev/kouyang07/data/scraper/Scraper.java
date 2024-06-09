@@ -4,8 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.StdDateFormat;
-import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.entities.MessageEmbed;
+import lombok.Data;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
@@ -21,22 +20,20 @@ import java.text.ParseException;
 import java.util.*;
 import java.text.SimpleDateFormat;
 import java.util.List;
-
+@Data
 public class Scraper {
     private final String item;
     private final Wear wear;
-    private final boolean statTrack;
+    private final boolean statTrak;
     private Document doc;
-    private boolean isValid;
 
-    public Scraper(String item, Wear wear, boolean statTrack) {
+    public Scraper(String item, Wear wear, boolean statTrak) {
         this.item = item;
         this.wear = wear;
-        this.statTrack = statTrack;
+        this.statTrak = statTrak;
         try {
-            doc = Jsoup.connect(URLConstructor(item, wear, statTrack)).get();
+            doc = Jsoup.connect(URLConstructor(item, wear, statTrak)).get();
         } catch (Exception e) {
-            isValid = false;
             doc = null;
         }
     }
@@ -45,11 +42,10 @@ public class Scraper {
     public Scraper(String item, Wear wear) {
         this.item = item;
         this.wear = wear;
-        this.statTrack = false;
+        this.statTrak = false;
         try {
             doc = Jsoup.connect(URLConstructor(item, wear)).get();
         } catch (Exception e) {
-            isValid = false;
             doc = null;
         }
     }
@@ -57,66 +53,23 @@ public class Scraper {
     public Scraper(String item) {
         this.item = item;
         this.wear = null;
-        this.statTrack = false;
+        this.statTrak = false;
         try {
             doc = Jsoup.connect(URLConstructor(item)).get();
         } catch (Exception e) {
-            isValid = false;
             doc = null;
         }
     }
 
-    public Scraper(String item, boolean statTrack) {
+    public Scraper(String item, boolean statTrak) {
         this.item = item;
         this.wear = null;
-        this.statTrack = statTrack;
+        this.statTrak = statTrak;
         try {
-            doc = Jsoup.connect(URLConstructor(item, statTrack)).get();
+            doc = Jsoup.connect(URLConstructor(item, statTrak)).get();
         } catch (Exception e) {
-            isValid = false;
             doc = null;
         }
-    }
-
-    public MessageEmbed flipData() {
-        Platforms[] platforms = filterPlatforms();
-        PriceStatistics priceStatistics = scrapePriceStatistics();
-        if (platforms[0] == null || platforms[1] == null || (platforms[0] == platforms[1])) {
-            return new EmbedBuilder()
-                    .setTitle("Skin data for " + item.replace("-", " ") + " : NOT RECOMMENDED")
-                    .addField("Attributes", (wear != null ? " (" + wear.getName() + ")" : "") + "\n"+ (statTrack ? " (StatTrak)" : ""), false)
-                    .addField("Historical Data", "Current Price: $" + priceStatistics.getCurrentPrice() + "\n" +
-                            "24h Price Change: $" + priceStatistics.getPriceChange() + "\n" +
-                            "24h Trading Volume: $" + priceStatistics.getTradingVolume() + "\n" +
-                            "Market Cap: $" + priceStatistics.getMarketCap() + "\n" +
-                            "Volume / Market Cap: $" + priceStatistics.getVolumeMarketCap() + "\n" +
-                            "30d High: $" + priceStatistics.getHigh() + "\n" +
-                            "30d Low: $" + priceStatistics.getLow() + "\n" +
-                            "30d Average $" + (priceStatistics.getHigh() + priceStatistics.getLow()) / 2 + "\n" +
-                            "All Time High: $" + priceStatistics.getAllTimeHigh() + "\n" +
-                            "All Time Low: $" + priceStatistics.getAllTimeLow(), false)
-                     .build();
-        }
-        return new EmbedBuilder()
-                .setTitle("Skin data for " + item.replace("-", " ") + " : ~ $" + (int) (platforms[1].getPrice() - platforms[0].getPrice()))
-                .addField("Attributes", ("Wear: " + (wear != null ? " (" + wear.getName() + ")" : "Factory New")  + "\nStatTrak: " + (statTrack ? " (True)" : "(False)")), false)
-                .addField("Recommended action",
-                        "Buy from " + platforms[0].getName() + "@" + platforms[0].getPrice() + " , sell to " + platforms[1].getName() + "@" + platforms[1].getPrice() + " (Fees included)", false)
-
-                .addField("Historical Data", "Current Price: $" + priceStatistics.getCurrentPrice() + "\n" +
-                        "24h Price Change: $" + priceStatistics.getPriceChange() + "\n" +
-                        "24h Trading Volume: $" + priceStatistics.getTradingVolume() + "\n" +
-                        "Market Cap: $" + priceStatistics.getMarketCap() + "\n" +
-                        "Volume / Market Cap: $" + priceStatistics.getVolumeMarketCap() + "\n" +
-                        "30d High: $" + priceStatistics.getHigh() + "\n" +
-                        "30d Low: $" + priceStatistics.getLow() + "\n" +
-                        "30d Average $" + (priceStatistics.getHigh() + priceStatistics.getLow()) / 2 + "\n" +
-                        "All Time High: $" + priceStatistics.getAllTimeHigh() + "\n" +
-                        "All Time Low: $" + priceStatistics.getAllTimeLow(), false)
-                .addField("Flipping Data",
-                        "Lowest: " + platforms[0].getName() + " at $" + platforms[0].getPrice() + " at " + platforms[0].getUrl() + "\n" +
-                                "Highest: " + platforms[1].getName() + " at $" + platforms[1].getPrice() + " at " + platforms[1].getUrl(), true)
-                .build();
     }
 
     public byte[] generateChart() {
@@ -159,7 +112,7 @@ public class Scraper {
         lineChart.getPlot().setBackgroundPaint(new Color(31, 41, 55));
 
         try {
-            return ChartUtils.encodeAsPNG(lineChart.createBufferedImage(1500, 800));
+            return ChartUtils.encodeAsPNG(lineChart.createBufferedImage(1300, 600));
         } catch (Exception e) {
             System.err.println("Error while encoding as PNG");
             e.printStackTrace(); // Print stack trace to identify the issue
@@ -240,7 +193,7 @@ public class Scraper {
      * @return an array of the lowest(Indexed at 0) and highest(Indexed at 1) priced platforms
      */
 
-    private Platforms[] filterPlatforms() {
+    public Platforms[] filterPlatforms() {
         Platforms[] platforms = scrapePlatforms();
         int lIndex = 0;
         double minPrice = Double.MAX_VALUE;
@@ -325,5 +278,9 @@ public class Scraper {
 
     public boolean isValid() {
         return doc != null;
+    }
+
+    public boolean getStatTrak(){
+        return statTrak;
     }
 }
