@@ -2,7 +2,7 @@ package dev.kouyang07.data.items;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import dev.kouyang07.data.items.structure.*;
+import dev.kouyang07.data.items.struct.*;
 import lombok.Data;
 
 import java.util.HashMap;

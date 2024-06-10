@@ -1,9 +1,9 @@
-package dev.kouyang07.data.items.structure;
+package dev.kouyang07.data.items.struct;
 
 import lombok.Data;
 
 @Data
-public class Pattern {
+public class Category {
     private String id;
     private String name;
 }
