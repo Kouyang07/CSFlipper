@@ -1,4 +1,4 @@
-package dev.kouyang07.data.items.struct;
+package dev.kouyang07.data.structs.skin;
 
 import lombok.Data;
 

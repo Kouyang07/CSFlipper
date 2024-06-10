@@ -8,27 +8,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eaf60fac-a892-4324-b733-add2f33ad199" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/api/steamcommunity/PlayerInventory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/api/steamcommunity/struct/Action.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/api/steamcommunity/struct/Description.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/api/steamcommunity/struct/DescriptionDetail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/api/steamcommunity/struct/MarketAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/api/steamcommunity/struct/RootWrapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/api/steamcommunity/struct/Tag.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/Item.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/structs/Price.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/Skin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/Skin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/structure/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/struct/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/structure/Collection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/struct/Collection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/structure/Crate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/struct/Crate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/structure/Pattern.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/struct/Pattern.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/structure/Rarity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/struct/Rarity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/structure/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/struct/Team.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/structure/Weapon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/struct/Weapon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/structure/Wear.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/struct/Wear.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dev/kouyang07/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dev/kouyang07/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dev/kouyang07/discord/CommandListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dev/kouyang07/discord/CommandListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/api/steamcommunity/PlayerInventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/PlayerInventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/api/steamcommunity/struct/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/structs/api/Action.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/api/steamcommunity/struct/Description.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/structs/api/Details.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/api/steamcommunity/struct/DescriptionDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/structs/api/DescriptionDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/api/steamcommunity/struct/MarketAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/structs/api/MarketAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/api/steamcommunity/struct/RootWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/structs/APIWrapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/api/steamcommunity/struct/Tag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/structs/api/Tag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/Skin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/structs/Skin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/struct/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/structs/skin/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/struct/Collection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/structs/skin/Collection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/struct/Crate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/structs/skin/Crate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/struct/Pattern.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/structs/skin/Pattern.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/struct/Rarity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/structs/skin/Rarity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/struct/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/structs/skin/Team.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/struct/Weapon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/structs/skin/Weapon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/items/struct/Wear.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/structs/skin/Wear.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/scraper/Platforms.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/structs/scraper/Platforms.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/scraper/PriceHistory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/structs/scraper/PriceHistory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/scraper/PriceStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/structs/scraper/PriceStatistics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/scraper/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/structs/scraper/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/scraper/Scraper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/Scraper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/scraper/Wear.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/data/structs/scraper/Wear.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/kouyang07/discord/CommandListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/kouyang07/discord/CommandListener.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,7 +173,8 @@
       <workItem from="1717519525987" duration="6172000" />
       <workItem from="1717611143221" duration="706000" />
       <workItem from="1717675815976" duration="12947000" />
-      <workItem from="1717712752440" duration="16833000" />
+      <workItem from="1717712752440" duration="17382000" />
+      <workItem from="1718020423569" duration="4246000" />
     </task>
     <servers />
   </component>

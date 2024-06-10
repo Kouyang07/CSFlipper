@@ -1,9 +1,10 @@
-package dev.kouyang07.data.scraper;
+package dev.kouyang07.data;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.StdDateFormat;
+import dev.kouyang07.data.structs.scraper.*;
 import lombok.Data;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtils;

@@ -1,4 +1,4 @@
-package dev.kouyang07.data.api.steamcommunity.struct;
+package dev.kouyang07.data.structs.api;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Description {
+public class Details {
     @JsonProperty("appid")
     private int appId;
 

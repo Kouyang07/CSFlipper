@@ -1,10 +1,10 @@
 package dev.kouyang07.discord;
 
-import dev.kouyang07.data.items.Skin;
-import dev.kouyang07.data.scraper.Platforms;
-import dev.kouyang07.data.scraper.PriceStatistics;
-import dev.kouyang07.data.scraper.Scraper;
-import dev.kouyang07.data.scraper.Wear;
+import dev.kouyang07.data.structs.Skin;
+import dev.kouyang07.data.structs.scraper.Platforms;
+import dev.kouyang07.data.structs.scraper.PriceStatistics;
+import dev.kouyang07.data.Scraper;
+import dev.kouyang07.data.structs.scraper.Wear;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.events.interaction.command.CommandAutoCompleteInteractionEvent;

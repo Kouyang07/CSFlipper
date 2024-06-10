@@ -1,9 +1,7 @@
 package dev.kouyang07;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dev.kouyang07.data.api.steamcommunity.PlayerInventory;
-import dev.kouyang07.data.items.Skin;
-import dev.kouyang07.data.scraper.Scraper;
+import dev.kouyang07.data.structs.Skin;
 import dev.kouyang07.discord.Bot;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

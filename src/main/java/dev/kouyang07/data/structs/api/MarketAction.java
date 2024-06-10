@@ -1,4 +1,4 @@
-package dev.kouyang07.data.api.steamcommunity.struct;
+package dev.kouyang07.data.structs.api;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Action {
+public class MarketAction {
     @JsonProperty("link")
     private String link;
 

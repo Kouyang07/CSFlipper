@@ -1,4 +1,4 @@
-package dev.kouyang07.data.scraper;
+package dev.kouyang07.data.structs.scraper;
 
 import lombok.Data;
 

@@ -1,15 +1,14 @@
-package dev.kouyang07.data.api.steamcommunity;
+package dev.kouyang07.data;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dev.kouyang07.data.api.steamcommunity.struct.Description;
-import dev.kouyang07.data.api.steamcommunity.struct.RootWrapper;
+import dev.kouyang07.data.structs.api.Details;
+import dev.kouyang07.data.structs.APIWrapper;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class PlayerInventory {
     //https://steamcommunity.com/inventory/76561198824034732/730/2?l=english
@@ -40,10 +39,10 @@ public class PlayerInventory {
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
-            RootWrapper root = objectMapper.readValue(jsonData, RootWrapper.class);
+            APIWrapper root = objectMapper.readValue(jsonData, APIWrapper.class);
             ArrayList<String> marketNames = new ArrayList<>();
-            for(Description description : root.getDescriptions()) {
-                marketNames.add(description.getMarketHashName());
+            for(Details details : root.getDetails()) {
+                marketNames.add(details.getMarketHashName());
             }
             return marketNames;
         } catch (IOException e) {
