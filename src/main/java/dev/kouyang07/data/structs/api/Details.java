@@ -65,7 +65,4 @@ public class Details {
 
     @JsonProperty("tags")
     private List<Tag> tags;
-
-    // Getters and Setters
-    // (Omitted for brevity; generate these in your IDE)
 }

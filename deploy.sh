@@ -5,8 +5,8 @@ USER="root"
 REMOTE_SERVER="134.122.120.150"
 DEST_PATH="/root"
 JAR_NAME="CSFlipper-1.0-SNAPSHOT.jar"
-CONTAINER_NAME="CSFlipper"
-IMAGE_NAME="csflipper"
+CONTAINER_NAME="CSFlipper2"
+IMAGE_NAME="csflipper2"
 
 # Step 1: Build the Fat JAR
 echo "Building the fat JAR..."

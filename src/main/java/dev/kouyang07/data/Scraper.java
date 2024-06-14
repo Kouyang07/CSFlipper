@@ -4,147 +4,35 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.StdDateFormat;
+import dev.kouyang07.data.structs.Item;
+import dev.kouyang07.data.structs.Price;
 import dev.kouyang07.data.structs.scraper.*;
 import lombok.Data;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartUtils;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.awt.*;
-import java.text.ParseException;
 import java.util.*;
-import java.text.SimpleDateFormat;
 import java.util.List;
 @Data
 public class Scraper {
-    private final String item;
-    private final Wear wear;
-    private final boolean statTrak;
+    private final Item item;
     private Document doc;
+    private String url;
 
-    public Scraper(String item, Wear wear, boolean statTrak) {
+    public Scraper(Item item) {
         this.item = item;
-        this.wear = wear;
-        this.statTrak = statTrak;
         try {
-            doc = Jsoup.connect(URLConstructor(item, wear, statTrak)).get();
+            this.url = item.generateURL();
+            doc = Jsoup.connect(url).get();
         } catch (Exception e) {
             doc = null;
         }
     }
 
-
-    public Scraper(String item, Wear wear) {
-        this.item = item;
-        this.wear = wear;
-        this.statTrak = false;
-        try {
-            doc = Jsoup.connect(URLConstructor(item, wear)).get();
-        } catch (Exception e) {
-            doc = null;
-        }
-    }
-
-    public Scraper(String item) {
-        this.item = item;
-        this.wear = null;
-        this.statTrak = false;
-        try {
-            doc = Jsoup.connect(URLConstructor(item)).get();
-        } catch (Exception e) {
-            doc = null;
-        }
-    }
-
-    public Scraper(String item, boolean statTrak) {
-        this.item = item;
-        this.wear = null;
-        this.statTrak = statTrak;
-        try {
-            doc = Jsoup.connect(URLConstructor(item, statTrak)).get();
-        } catch (Exception e) {
-            doc = null;
-        }
-    }
-
-    public byte[] generateChart() {
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        SimpleDateFormat inputDateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy"); // The format of your date strings
-        SimpleDateFormat outputDateFormat = new SimpleDateFormat("MM/dd"); // Desired format for the chart
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DAY_OF_YEAR, -14); // Get date 30 days ago
-        Date thirtyDaysAgo = calendar.getTime();
-
-        Product product = scrapeHistoricalData();
-
-        for (PriceHistory entry : product.getPriceHistory()) {
-            try {
-                // Parse the date using the correct format
-                Date date = inputDateFormat.parse(String.valueOf(entry.getDay()));
-                if (date.after(thirtyDaysAgo)) { // Filter for the last 30 days
-                    String formattedDate = outputDateFormat.format(date);
-                    dataset.addValue(entry.getPrice(), "Price", formattedDate);
-                }
-            } catch (ParseException e) {
-                System.err.println("Error parsing date: " + entry.getDay());
-                e.printStackTrace(); // Print stack trace to identify the issue
-            } catch (Exception e) {
-                System.err.println("Unexpected error while adding value to dataset for date: " + entry.getDay());
-                e.printStackTrace(); // Print stack trace to identify the issue
-            }
-        }
-
-        JFreeChart lineChart = ChartFactory.createLineChart(
-                "Price History for " + product.getName(),
-                "Date",
-                "Price",
-                dataset,
-                PlotOrientation.VERTICAL, // Changed to vertical for better visualization
-                true,
-                true,
-                false
-        );
-        lineChart.getPlot().setBackgroundPaint(new Color(31, 41, 55));
-
-        try {
-            return ChartUtils.encodeAsPNG(lineChart.createBufferedImage(1300, 600));
-        } catch (Exception e) {
-            System.err.println("Error while encoding as PNG");
-            e.printStackTrace(); // Print stack trace to identify the issue
-        }
-
-        return new byte[]{};
-    }
-
-    public String URLConstructor(String item) {
-        return "https://csgoskins.gg/items/" + item.replace("★", "").replaceAll("\\|", "").replaceAll(" {2}", " ").trim().replaceAll(" ", "-").toLowerCase();
-    }
-
-    public String URLConstructor(String item, Wear wear, boolean statTrack) {
-        String base = "https://csgoskins.gg/items/" + item.replace("★", "").replaceAll("\\|", "").replaceAll(" {2}", " ").trim().replaceAll(" ", "-").toLowerCase();
-        if (statTrack) {
-            return base + "/stattrak-" + wear.getName().toLowerCase();
-        } else {
-            return base + "/" + wear.getName().toLowerCase();
-        }
-    }
-
-    public String URLConstructor(String item, boolean statTrack) {
-        return "https://csgoskins.gg/items/" + item.replace("★", "").replaceAll("\\|", "").replaceAll(" {2}", " ").trim().replaceAll(" ", "-").toLowerCase() + "/stattrak-factory-new";
-    }
-
-    public String URLConstructor(String item, Wear wear) {
-        return "https://csgoskins.gg/items/" + item.replace("★", "").replaceAll("\\|", "").replaceAll(" {2}", " ").trim().replaceAll(" ", "-").toLowerCase() + "/" + wear.getName().toLowerCase();
-    }
-
-    private Platforms[] scrapePlatforms() {
-        Platforms[] platforms = new Platforms[25];
+    private Platform[] scrapePlatforms() {
+        Platform[] platforms = new Platform[25];
         try {
             Elements skinPortElement = doc.selectXpath("/html/body/main/div[2]/div[2]/div[1]/div[2]");
             Element skinPort = skinPortElement.first();
@@ -157,7 +45,7 @@ public class Scraper {
             } else {
                 linkString = ("Link not found");
             }
-            platforms[0] = new Platforms(skinPortTokens[0], Integer.parseInt(skinPortTokens[7]), Double.parseDouble(skinPortTokens[9].substring(1)), linkString);
+            platforms[0] = new Platform(skinPortTokens[0], Integer.parseInt(skinPortTokens[7]), Double.parseDouble(skinPortTokens[9].substring(1)), linkString);
 
             for (int i = 3; i <= platforms.length + 3; i++) {
                 Elements platformElements = doc.selectXpath("/html/body/main/div[2]/div[2]/div[1]/div[" + i + "]");
@@ -172,7 +60,7 @@ public class Scraper {
         return platforms;
     }
 
-    private Platforms parsePlatform(Element platform) {
+    private Platform parsePlatform(Element platform) {
         String[] tokens = platform.text().split(" ");
         String linkString;
         Element link = platform.select("div.bg-gray-800 a:contains(View Offer)").first();
@@ -182,9 +70,9 @@ public class Scraper {
             linkString = ("Link not found");
         }
         if (tokens.length == 12) {
-            return new Platforms(tokens[0], Integer.parseInt(tokens[7]), Double.parseDouble(tokens[9].substring(1)), linkString);
+            return new Platform(tokens[0], Integer.parseInt(tokens[7].contains("k") ? String.valueOf((Integer.parseInt(tokens[7].replaceAll("k", "")) * 1000)) : tokens[7]), Double.parseDouble(tokens[9].substring(1)), linkString);
         } else {
-            return new Platforms(tokens[0] + " " + tokens[1], Integer.parseInt(tokens[8]), Double.parseDouble(tokens[10].substring(1)), linkString);
+            return new Platform(tokens[0] + " " + tokens[1], Integer.parseInt(tokens[8]), Double.parseDouble(tokens[10].substring(1)), linkString);
         }
     }
 
@@ -194,8 +82,8 @@ public class Scraper {
      * @return an array of the lowest(Indexed at 0) and highest(Indexed at 1) priced platforms
      */
 
-    public Platforms[] filterPlatforms() {
-        Platforms[] platforms = scrapePlatforms();
+    public Platform[] filterPlatforms() {
+        Platform[] platforms = scrapePlatforms();
         int lIndex = 0;
         double minPrice = Double.MAX_VALUE;
         int hIndex = 0;
@@ -214,7 +102,7 @@ public class Scraper {
             }
         }
 
-        Platforms[] prices = new Platforms[]{platforms[lIndex], platforms[hIndex]};
+        Platform[] prices = new Platform[]{platforms[lIndex], platforms[hIndex]};
 
         if(prices[1] != null) {
 
@@ -227,7 +115,7 @@ public class Scraper {
         return prices;
     }
 
-    public PriceStatistics scrapePriceStatistics() {
+    public PriceStatistics getPriceStatistics() {
         List<Double> values = new ArrayList<>();
 
         Element element = doc.select("div[class=\"shadow-md bg-gray-800 rounded mt-4\"]").getLast();
@@ -235,7 +123,7 @@ public class Scraper {
         for (Element field : fields) {
             String[] tokens = field.text().split(" ");
             if (tokens[2].contains("Change")) {
-                values.add(Double.parseDouble(tokens[tokens.length - 2].substring(2).replaceAll(",", "")));
+                values.add(Double.parseDouble(tokens[tokens.length - 2].replaceAll(",", "").replaceAll("\\$", "")));
             } else {
                 values.add(Double.parseDouble(tokens[tokens.length - 1].substring(1).replaceAll(",", "")));
             }
@@ -243,9 +131,9 @@ public class Scraper {
         return new PriceStatistics(values);
     }
 
-    public Product scrapeHistoricalData() {
+    public PriceHistory getPriceHistory() {
         Elements scripts = doc.select("script");
-        Product product = null;
+        PriceHistory priceHistory = null;
         try {
 
             for (Element script : scripts) {
@@ -260,12 +148,12 @@ public class Scraper {
                     objectMapper.setDateFormat(new StdDateFormat());
 
                     try {
-                        List<PriceHistory> priceHistoryList = objectMapper.readValue(jsonData, new TypeReference<>() {
+                        List<DailyPrice> dailyPriceList = objectMapper.readValue(jsonData, new TypeReference<>() {
                         });
 
-                        product = new Product();
-                        product.setName(item);
-                        product.setPriceHistory(priceHistoryList);
+                        priceHistory = new PriceHistory();
+                        priceHistory.setItem(item);
+                        priceHistory.setDailyPrice(dailyPriceList);
                     } catch (JsonProcessingException e) {
                         e.printStackTrace();
                     }
@@ -274,10 +162,17 @@ public class Scraper {
         } catch (Exception e) {
             System.out.println("Error while parsing historical Data");
         }
-        return product;
+        return priceHistory;
     }
 
-    public String scrapeImage(){
+    public Price getPrice(){
+        Platform[] results = scrapePlatforms();
+        Price price = new Price(results[0], results[1], getPriceHistory(), getPriceStatistics());
+        CSData.cachedPrice.putIfAbsent(item, price);
+        return price;
+    }
+
+    public String getImageURL(){
         Element img = doc.select("img#main-image").first();
         if (img != null) {
             return img.attr("src");
@@ -288,9 +183,5 @@ public class Scraper {
 
     public boolean isValid() {
         return doc != null;
-    }
-
-    public boolean getStatTrak(){
-        return statTrak;
     }
 }

@@ -1,22 +1,19 @@
 package dev.kouyang07.data.structs.scraper;
 
+import dev.kouyang07.data.structs.Item;
 import lombok.Data;
 
-import java.util.Date;
+import java.util.List;
 @Data
 public class PriceHistory {
-    private Date day;
-    private int price;
-    private int quantity;
-    private int volume;
+    private Item item;
+    private List<DailyPrice> dailyPrice;
 
     @Override
     public String toString() {
-        return "PriceHistory{" +
-                "day=" + day +
-                ", price=" + price +
-                ", quantity=" + quantity +
-                ", volume=" + volume +
+        return "Product{" +
+                "name='" + item.generateShortName() + '\'' +
+                ", priceHistory=" + dailyPrice +
                 '}';
     }
 }
